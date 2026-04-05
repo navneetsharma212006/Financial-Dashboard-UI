@@ -133,7 +133,7 @@ npm run dev
 ![Dashboard](https://github.com/navneetsharma212006/Financial-Dashboard-UI/blob/c67f4762e221c22c1eff06a3465b299d70152df0/screenshots/Dashboard.png)
 
 **Transactions**
-![Transactions](https://github.com/navneetsharma212006/Financial-Dashboard-UI/blob/148053565611cb98bef6490cb92f242b4c396018/screenshots/Insights.png)
+![Transactions](https://github.com/navneetsharma212006/Financial-Dashboard-UI/blob/3a14678cb8862a158a914954af5c8a91256fa4d3/screenshots/Transactions.png)
 
 **Insights**
 ![Insights](screenshots/insights.png)
