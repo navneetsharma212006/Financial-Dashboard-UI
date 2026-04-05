@@ -11,14 +11,15 @@ const InsightsView = ({ transactions, onAdd, canAdd }) => {
     <section className="flex min-h-full flex-col rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Insights</h2>
-        <button
-          type="button"
-          onClick={onAdd}
-          disabled={!canAdd}
-          className="rounded-md border border-slate-300 px-3 py-1.5 text-sm disabled:opacity-50 dark:border-slate-600 dark:text-slate-200"
-        >
-          + Add Transaction
-        </button>
+        {canAdd && (
+          <button
+            type="button"
+            onClick={onAdd}
+            className="rounded-md border border-slate-300 px-3 py-1.5 text-sm dark:border-slate-600 dark:text-slate-200"
+          >
+            + Add Transaction
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">

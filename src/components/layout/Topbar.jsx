@@ -69,14 +69,15 @@ const Topbar = ({
           >
             {syncStatus === 'syncing' ? 'Syncing...' : 'Sync'}
           </button>
-          <button
-            type="button"
-            disabled={role !== 'admin'}
-            onClick={onAdd}
-            className="rounded-2xl bg-slate-900 px-4 py-2 text-xs font-medium text-white disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            + Add Transaction
-          </button>
+          {role === 'admin' && (
+            <button
+              type="button"
+              onClick={onAdd}
+              className="rounded-2xl bg-slate-900 px-4 py-2 text-xs font-medium text-white hover:bg-slate-800"
+            >
+              + Add Transaction
+            </button>
+          )}
         </div>
       </div>
     </header>

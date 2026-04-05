@@ -3,7 +3,14 @@ import EmptyState from '../common/EmptyState'
 
 const TransactionsTable = ({ rows, onEdit, canEdit, onAdd }) => {
   if (!rows.length) {
-    return <EmptyState title="No transactions yet" hint="Add your first transaction to get started." actionLabel="Add Transaction" onAction={onAdd} />
+    return (
+      <EmptyState
+        title="No transactions yet"
+        hint="Add your first transaction to get started."
+        actionLabel={canEdit ? 'Add Transaction' : undefined}
+        onAction={canEdit ? onAdd : undefined}
+      />
+    )
   }
 
   return (

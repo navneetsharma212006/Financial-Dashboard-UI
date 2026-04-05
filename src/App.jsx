@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import TransactionFormModal from './components/transactions/TransactionFormModal'
@@ -19,6 +19,7 @@ const App = () => {
     syncStatus,
     setTheme,
     setSearchQuery,
+    setFilters,
     addTransaction,
     updateTransaction,
     deleteTransaction,
@@ -48,6 +49,12 @@ const App = () => {
     setEditingTx(item)
     setModalOpen(true)
   }
+
+  useEffect(() => {
+    if (activeView === 'transactions') {
+      setFilters({ type: 'all', category: 'all' })
+    }
+  }, [activeView, setFilters])
 
   const handleSaveTransaction = (payload) => {
     if (role !== 'admin') return
