@@ -6,8 +6,8 @@ This project allows users to **track income, expenses, and financial insights** 
 The goal of this project is to demonstrate **modern frontend development practices** such as component architecture, state management, responsive UI design, and reusable UI components.
 
 ---
-# Deployment link 
-https://financial-dashboard-ui-iota.vercel.app/
+### Deployment
+Live Demo: https://financial-dashboard-ui-iota.vercel.app/
 
 # Features
 
