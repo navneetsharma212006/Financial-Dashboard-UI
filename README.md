@@ -130,7 +130,7 @@ npm run dev
 # Screenshots
 
 **Dashboard**
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](https://github.com/navneetsharma212006/Financial-Dashboard-UI/blob/c67f4762e221c22c1eff06a3465b299d70152df0/screenshots/Dashboard.png)
 
 **Transactions**
 ![Transactions](screenshots/transactions.png)
