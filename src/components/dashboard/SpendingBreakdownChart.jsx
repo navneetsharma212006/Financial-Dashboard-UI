@@ -9,20 +9,41 @@ const SpendingBreakdownChart = ({ transactions }) => {
   const data = getCategorySpending(transactions)
 
   if (!data.length) {
-    return <EmptyState title="No expense categories yet" hint="Expense transactions will appear here as a category split." />
+    return (
+      <EmptyState 
+        title="No expense categories yet" 
+        hint="Expense transactions will appear here as a category split." 
+      />
+    )
   }
 
   return (
-    <div className="h-64 sm:h-72">
+    <div className="w-full h-[260px] sm:h-[320px] md:h-[380px]">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-          <Pie data={data} dataKey="value" nameKey="name" innerRadius={62} outerRadius={100} paddingAngle={2}>
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius="40%"
+            outerRadius="70%"
+            paddingAngle={3}
+          >
             {data.map((entry, idx) => (
               <Cell key={entry.name} fill={COLORS[idx % COLORS.length]} />
             ))}
           </Pie>
+
           <Tooltip formatter={(value) => formatCurrency(value)} />
-          <Legend />
+
+          <Legend
+            verticalAlign="bottom"
+            align="center"
+            iconType="circle"
+            wrapperStyle={{ fontSize: "12px" }}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

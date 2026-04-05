@@ -10,13 +10,13 @@ const TransactionsToolbar = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search category, note or amount"
-        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-brand-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-slate-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
       />
 
       <select
         value={filters.type}
         onChange={(e) => setFilters({ type: e.target.value })}
-        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-brand-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-slate-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
       >
         <option value="all">All Types</option>
         <option value="income">Income</option>
@@ -26,7 +26,7 @@ const TransactionsToolbar = () => {
       <select
         value={filters.category}
         onChange={(e) => setFilters({ category: e.target.value })}
-        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-brand-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-slate-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
       >
         <option value="all">All Categories</option>
         {categories.map((category) => (
@@ -39,7 +39,7 @@ const TransactionsToolbar = () => {
       <select
         value={filters.sortBy}
         onChange={(e) => setFilters({ sortBy: e.target.value })}
-        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-brand-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+        className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-slate-500 focus:ring-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
       >
         <option value="date_desc">Date (Newest)</option>
         <option value="date_asc">Date (Oldest)</option>

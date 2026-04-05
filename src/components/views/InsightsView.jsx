@@ -37,7 +37,7 @@ const InsightsView = ({ transactions, onAdd, canAdd }) => {
                   <span className="font-semibold text-slate-700 dark:text-slate-200">{formatCurrency(item.value)}</span>
                 </div>
                 <div className="h-2 rounded-full bg-slate-200 dark:bg-slate-700">
-                  <div className="h-2 rounded-full bg-brand-500" style={{ width: `${Math.min(100, item.value / 200)}%` }} />
+                  <div className="h-2 rounded-full bg-slate-500 dark:bg-slate-300" style={{ width: `${Math.min(100, item.value / 200)}%` }} />
                 </div>
               </div>
             ))}
