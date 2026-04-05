@@ -26,8 +26,7 @@ const App = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [editingTx, setEditingTx] = useState(null)
   const [activeView, setActiveView] = useState('dashboard')
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const openAddModal = () => {
     setEditingTx(null)
@@ -35,12 +34,7 @@ const App = () => {
   }
 
   const handleSidebarToggle = () => {
-    const isMobile = window.matchMedia('(max-width: 1023px)').matches
-    if (isMobile) {
-      setSidebarOpen((current) => !current)
-      return
-    }
-    setSidebarCollapsed((current) => !current)
+    setSidebarOpen((current) => !current)
   }
 
   const openEditModal = (item) => {
@@ -59,16 +53,15 @@ const App = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[#eceff5] p-3 dark:bg-slate-950 sm:p-5">
-      <div className="mx-auto flex min-h-screen w-full max-w-[1400px] gap-4 lg:flex-row">
+    <main className="h-screen bg-[#eceff5] p-3 dark:bg-slate-950 sm:p-5 overflow-hidden">
+      <div className="flex h-full w-full max-w-[1400px] gap-4 lg:flex-row mx-auto">
         <Sidebar
           activeView={activeView}
           onChangeView={setActiveView}
           isOpen={sidebarOpen}
-          collapsed={sidebarCollapsed}
           onClose={() => setSidebarOpen(false)}
         />
-        <div className="min-w-0 flex flex-1 flex-col rounded-2xl bg-white/95 p-3 shadow-card transition duration-300 dark:bg-slate-950 sm:p-4">
+        <div className="flex flex-1 flex-col rounded-2xl bg-white/95 p-3 shadow-card transition duration-300 dark:bg-slate-950 sm:p-4 overflow-hidden">
           <Topbar
             searchQuery={searchQuery}
             onSearch={setSearchQuery}
@@ -83,7 +76,7 @@ const App = () => {
             onMenuToggle={handleSidebarToggle}
           />
 
-          <div className="flex-1">
+          <div className="flex-1 overflow-y-auto">
             {activeView === 'dashboard' && <DashboardView transactions={transactions} />}
             {activeView === 'transactions' && (
               <TransactionsView rows={filteredTransactions} onEdit={openEditModal} canEdit={role === 'admin'} />
