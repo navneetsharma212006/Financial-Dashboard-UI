@@ -1,16 +1,184 @@
-# React + Vite
+# 💰 Financial Dashboard UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **Financial Dashboard Web Application** built using **React, Tailwind CSS, and Context API**.
+This project allows users to **track income, expenses, and financial insights** through a clean and responsive interface.
 
-Currently, two official plugins are available:
+The goal of this project is to demonstrate **modern frontend development practices** such as component architecture, state management, responsive UI design, and reusable UI components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📊 Dashboard
 
-## Expanding the ESLint configuration
+* Overview of financial activity
+* Summary cards for **Income, Expenses, and Balance**
+* Visual financial insights
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 💳 Transactions Management
+
+* View all financial transactions
+* Pagination for large datasets
+* Add new transactions
+* Edit existing transactions *(Admin only)*
+
+### 📈 Insights
+
+* Financial data insights
+* Category-based spending analysis
+
+### 🔍 Search & Filtering
+
+* Real-time transaction search
+* Dynamic filtering
+
+### 📤 Data Export
+
+* Export transactions as:
+
+  * CSV
+  * JSON
+
+### 🌙 Dark Mode
+
+* Light / Dark theme toggle
+* Fully responsive design
+
+### 🔄 Mock Sync
+
+* Simulates syncing data with server
+
+---
+
+# 🛠️ Tech Stack
+
+**Frontend**
+
+* React
+* JavaScript (ES6+)
+* Tailwind CSS
+* Context API
+
+**Tools**
+
+* Vite
+* Git
+* GitHub
+
+---
+
+# 📁 Project Structure
+
+```
+src
+│
+├── components
+│   ├── common
+│   ├── layout
+│   │   ├── Sidebar.jsx
+│   │   └── Topbar.jsx
+│   │
+│   ├── transactions
+│   │   ├── TransactionsTable.jsx
+│   │   ├── TransactionsToolbar.jsx
+│   │   └── TransactionFormModal.jsx
+│   │
+│   └── views
+│       ├── DashboardView.jsx
+│       ├── TransactionsView.jsx
+│       └── InsightsView.jsx
+│
+├── context
+│   └── FinanceContext.jsx
+│
+├── utils
+│   ├── exportData.js
+│   └── formatters.js
+│
+└── App.jsx
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/financial-dashboard.git
+```
+
+Go into the project directory
+
+```bash
+cd financial-dashboard
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start development server
+
+```bash
+npm run dev
+```
+
+---
+
+# 📸 Screenshots
+
+Dashboard
+
+Transactions
+
+Insights
+
+*(Add screenshots of your UI here)*
+
+---
+
+# 📦 Future Improvements
+
+* Transaction filtering
+* Sorting transactions
+* Delete transactions
+* Charts & analytics
+* Backend integration
+* Authentication system
+
+---
+
+# 🎯 Learning Goals
+
+This project demonstrates:
+
+* React component architecture
+* State management with Context API
+* Responsive UI design
+* Reusable UI components
+* Modern Tailwind CSS practices
+* Clean project structure
+
+---
+
+# 👨‍💻 Author
+
+**Navneet Sharma**
+
+Frontend Developer
+Passionate about building **modern web applications and dashboards**
+
+---
+
+# ⭐ Support
+
+If you like this project:
+
+* ⭐ Star the repository
+* 🍴 Fork the project
+* 🚀 Contribute to improve it
+
+---
