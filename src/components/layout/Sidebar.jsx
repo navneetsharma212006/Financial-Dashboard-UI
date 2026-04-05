@@ -47,7 +47,12 @@ const Sidebar = ({ activeView, onChangeView, isOpen, onClose }) => {
               <button
                 key={item.key}
                 type="button"
-                onClick={() => onChangeView(item.key)}
+                onClick={() => {
+                  onChangeView(item.key)
+                  if (window.matchMedia('(max-width: 1023px)').matches) {
+                    onClose()
+                  }
+                }}
                 className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition duration-200 ${
                   activeView === item.key
                     ? 'bg-slate-800 text-white shadow-sm'
