@@ -21,6 +21,7 @@ const App = () => {
     setSearchQuery,
     addTransaction,
     updateTransaction,
+    deleteTransaction,
     mockSync,
   } = useFinance()
   const [modalOpen, setModalOpen] = useState(false)
@@ -55,6 +56,12 @@ const App = () => {
       return
     }
     addTransaction({ ...payload, id: `t${Date.now()}` })
+  }
+
+  const handleDeleteTransaction = (id) => {
+    if (role !== 'admin') return
+    deleteTransaction(id)
+    setModalOpen(false)
   }
 
   return (
@@ -102,6 +109,7 @@ const App = () => {
           open={modalOpen}
           onClose={() => setModalOpen(false)}
           onSubmit={handleSaveTransaction}
+          onDelete={handleDeleteTransaction}
           initialValue={editingTx}
           categories={categories}
         />

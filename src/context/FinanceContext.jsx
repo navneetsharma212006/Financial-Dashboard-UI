@@ -55,6 +55,11 @@ const financeReducer = (state, action) => {
         ...state,
         transactions: state.transactions.map((item) => (item.id === action.payload.id ? action.payload : item)),
       }
+    case 'DELETE_TRANSACTION':
+      return {
+        ...state,
+        transactions: state.transactions.filter((item) => item.id !== action.payload),
+      }
     default:
       return state
   }
@@ -124,6 +129,7 @@ export const FinanceProvider = ({ children }) => {
     setTheme: (value) => dispatch({ type: 'SET_THEME', payload: value }),
     addTransaction: (payload) => dispatch({ type: 'ADD_TRANSACTION', payload }),
     updateTransaction: (payload) => dispatch({ type: 'UPDATE_TRANSACTION', payload }),
+    deleteTransaction: (id) => dispatch({ type: 'DELETE_TRANSACTION', payload: id }),
     mockSync: async () => {
       dispatch({ type: 'SET_SYNC_STATUS', payload: 'syncing' })
       await new Promise((resolve) => setTimeout(resolve, 1200))
