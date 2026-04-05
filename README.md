@@ -1,4 +1,4 @@
-# 💰 Financial Dashboard UI
+#  Financial Dashboard UI
 
 A modern **Financial Dashboard Web Application** built using **React, Tailwind CSS, and Context API**.
 This project allows users to **track income, expenses, and financial insights** through a clean and responsive interface.
@@ -7,50 +7,50 @@ The goal of this project is to demonstrate **modern frontend development practic
 
 ---
 
-# 🚀 Features
+#  Features
 
-### 📊 Dashboard
+###  Dashboard
 
 * Overview of financial activity
 * Summary cards for **Income, Expenses, and Balance**
 * Visual financial insights
 
-### 💳 Transactions Management
+###  Transactions Management
 
 * View all financial transactions
 * Pagination for large datasets
 * Add new transactions
 * Edit existing transactions *(Admin only)*
 
-### 📈 Insights
+###  Insights
 
 * Financial data insights
 * Category-based spending analysis
 
-### 🔍 Search & Filtering
+###  Search & Filtering
 
 * Real-time transaction search
 * Dynamic filtering
 
-### 📤 Data Export
+###  Data Export
 
 * Export transactions as:
 
   * CSV
   * JSON
 
-### 🌙 Dark Mode
+###  Dark Mode
 
 * Light / Dark theme toggle
 * Fully responsive design
 
-### 🔄 Mock Sync
+###  Mock Sync
 
 * Simulates syncing data with server
 
 ---
 
-# 🛠️ Tech Stack
+#  Tech Stack
 
 **Frontend**
 
@@ -67,7 +67,7 @@ The goal of this project is to demonstrate **modern frontend development practic
 
 ---
 
-# 📁 Project Structure
+#  Project Structure
 
 ```
 src
@@ -100,7 +100,7 @@ src
 
 ---
 
-# ⚙️ Installation
+#  Installation
 
 Clone the repository
 
@@ -128,7 +128,7 @@ npm run dev
 
 ---
 
-# 📸 Screenshots
+# Screenshots
 
 Dashboard
 
@@ -136,11 +136,11 @@ Transactions
 
 Insights
 
-*(Add screenshots of your UI here)*
+
 
 ---
 
-# 📦 Future Improvements
+#  Future Improvements
 
 * Transaction filtering
 * Sorting transactions
@@ -151,7 +151,7 @@ Insights
 
 ---
 
-# 🎯 Learning Goals
+# Learning Goals
 
 This project demonstrates:
 
@@ -164,7 +164,7 @@ This project demonstrates:
 
 ---
 
-# 👨‍💻 Author
+# Author
 
 **Navneet Sharma**
 
@@ -173,12 +173,12 @@ Passionate about building **modern web applications and dashboards**
 
 ---
 
-# ⭐ Support
+#  Support
 
 If you like this project:
 
-* ⭐ Star the repository
-* 🍴 Fork the project
-* 🚀 Contribute to improve it
+*  Star the repository
+*  Fork the project
+*  Contribute to improve it
 
 ---

@@ -1,4 +1,4 @@
-import { FiBarChart2, FiHome, FiList, FiPieChart, FiMenu, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiBarChart2, FiHome, FiList, FiPieChart, FiMenu, FiX, FiChevronLeft, FiChevronRight, FiTrash2 } from 'react-icons/fi'
 import { useFinance } from '../../context/FinanceContext'
 import RoleSwitcher from '../common/RoleSwitcher'
 
@@ -9,6 +9,8 @@ const NAV_ITEMS = [
 ]
 
 const Sidebar = ({ activeView, onChangeView, isOpen, onClose, collapsed, onToggleCollapse }) => {
+  const { clearTransactions } = useFinance()
+
   return (
     <>
       {/* Mobile overlay */}
@@ -78,6 +80,26 @@ const Sidebar = ({ activeView, onChangeView, isOpen, onClose, collapsed, onToggl
             ))}
           </div>
         </nav>
+
+        {/* Actions */}
+        <div className="flex-shrink-0 mt-6">
+          <button
+            type="button"
+            onClick={() => {
+              const confirmed = window.confirm('Are you sure you want to clear all transactions? This action cannot be undone.')
+              if (confirmed) {
+                clearTransactions()
+              }
+            }}
+            className={`flex items-center gap-3 rounded-2xl bg-red-600 px-4 py-3 text-white transition duration-200 hover:bg-red-700 ${
+              collapsed ? 'lg:justify-center lg:px-3' : 'w-full'
+            }`}
+            title={collapsed ? 'Clear All Transactions' : undefined}
+          >
+            <FiTrash2 className="h-5 w-5" />
+            {!collapsed && <span>Clear All Transactions</span>}
+          </button>
+        </div>
 
         {/* Role Section */}
         {!collapsed && (

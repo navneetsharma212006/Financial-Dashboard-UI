@@ -1,11 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const emptyForm = { date: '', amount: '', category: '', type: 'expense', note: '' }
 
 const TransactionFormModal = ({ open, onClose, onSubmit, onDelete, initialValue, categories }) => {
   const [form, setForm] = useState(initialValue || emptyForm)
+  const [isCustomCategory, setIsCustomCategory] = useState(false)
 
   if (!open) return null
+
+  const predefinedCategories = ['Grocery', 'Rent', 'Dinner', 'Salary', 'Transport', 'Utilities', 'Health', 'Shopping', 'Travel', 'Freelance']
+
+  useEffect(() => {
+    if (initialValue?.category) {
+      setIsCustomCategory(!predefinedCategories.includes(initialValue.category))
+    }
+  }, [initialValue])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -19,6 +28,16 @@ const TransactionFormModal = ({ open, onClose, onSubmit, onDelete, initialValue,
 
   const handleChange = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }))
+  }
+
+  const handleCategoryChange = (value) => {
+    if (value === 'Custom') {
+      setIsCustomCategory(true)
+      handleChange('category', '')
+    } else {
+      setIsCustomCategory(false)
+      handleChange('category', value)
+    }
   }
 
   return (
@@ -43,20 +62,32 @@ const TransactionFormModal = ({ open, onClose, onSubmit, onDelete, initialValue,
             className="rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
             required
           />
-          <input
-            type="text"
-            value={form.category}
-            list="category-list"
-            onChange={(e) => handleChange('category', e.target.value)}
-            placeholder="Category"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-            required
-          />
-          <datalist id="category-list">
-            {categories.map((category) => (
-              <option key={category} value={category} />
-            ))}
-          </datalist>
+          <div className="sm:col-span-2">
+            <select
+              value={isCustomCategory ? 'Custom' : form.category}
+              onChange={(e) => handleCategoryChange(e.target.value)}
+              className="rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+              required
+            >
+              <option value="">Select Category</option>
+              {predefinedCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+              <option value="Custom">Custom</option>
+            </select>
+            {isCustomCategory && (
+              <input
+                type="text"
+                value={form.category}
+                onChange={(e) => handleChange('category', e.target.value)}
+                placeholder="Enter custom category"
+                className="mt-2 w-full rounded-md border border-slate-300 px-3 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                required
+              />
+            )}
+          </div>
           <select
             value={form.type}
             onChange={(e) => handleChange('type', e.target.value)}

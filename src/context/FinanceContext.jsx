@@ -60,6 +60,8 @@ const financeReducer = (state, action) => {
         ...state,
         transactions: state.transactions.filter((item) => item.id !== action.payload),
       }
+    case 'CLEAR_TRANSACTIONS':
+      return { ...state, transactions: [] }
     default:
       return state
   }
@@ -130,6 +132,7 @@ export const FinanceProvider = ({ children }) => {
     addTransaction: (payload) => dispatch({ type: 'ADD_TRANSACTION', payload }),
     updateTransaction: (payload) => dispatch({ type: 'UPDATE_TRANSACTION', payload }),
     deleteTransaction: (id) => dispatch({ type: 'DELETE_TRANSACTION', payload: id }),
+    clearTransactions: () => dispatch({ type: 'CLEAR_TRANSACTIONS' }),
     mockSync: async () => {
       dispatch({ type: 'SET_SYNC_STATUS', payload: 'syncing' })
       await new Promise((resolve) => setTimeout(resolve, 1200))
