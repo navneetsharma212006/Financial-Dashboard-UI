@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <main className="min-h-screen bg-[#eceff5] p-3 dark:bg-slate-950 sm:p-5">
-      <div className="mx-auto flex w-full max-w-[1400px] gap-4 lg:flex-row">
+      <div className="mx-auto flex min-h-screen w-full max-w-[1400px] gap-4 lg:flex-row">
         <Sidebar
           activeView={activeView}
           onChangeView={setActiveView}
@@ -68,7 +68,7 @@ const App = () => {
           collapsed={sidebarCollapsed}
           onClose={() => setSidebarOpen(false)}
         />
-        <div className="min-w-0 flex-1 rounded-2xl bg-white/95 p-3 shadow-card transition duration-300 dark:bg-slate-950 sm:p-4">
+        <div className="min-w-0 flex flex-1 flex-col rounded-2xl bg-white/95 p-3 shadow-card transition duration-300 dark:bg-slate-950 sm:p-4">
           <Topbar
             searchQuery={searchQuery}
             onSearch={setSearchQuery}
@@ -83,11 +83,13 @@ const App = () => {
             onMenuToggle={handleSidebarToggle}
           />
 
-          {activeView === 'dashboard' && <DashboardView transactions={transactions} />}
-          {activeView === 'transactions' && (
-            <TransactionsView rows={filteredTransactions} onEdit={openEditModal} canEdit={role === 'admin'} />
-          )}
-          {activeView === 'insights' && <InsightsView transactions={transactions} onAdd={openAddModal} canAdd={role === 'admin'} />}
+          <div className="flex-1">
+            {activeView === 'dashboard' && <DashboardView transactions={transactions} />}
+            {activeView === 'transactions' && (
+              <TransactionsView rows={filteredTransactions} onEdit={openEditModal} canEdit={role === 'admin'} />
+            )}
+            {activeView === 'insights' && <InsightsView transactions={transactions} onAdd={openAddModal} canAdd={role === 'admin'} />}
+          </div>
           {syncStatus === 'success' && (
             <p className="mt-3 text-sm font-medium text-emerald-600">Mock sync complete. Local changes are up to date.</p>
           )}

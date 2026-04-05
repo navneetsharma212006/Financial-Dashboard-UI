@@ -8,7 +8,7 @@ const InsightsView = ({ transactions, onAdd, canAdd }) => {
   const changePositive = insights.monthComparison.change >= 0
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
+    <section className="flex min-h-full flex-col rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Insights</h2>
         <button

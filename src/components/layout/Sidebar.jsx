@@ -20,11 +20,11 @@ const Sidebar = ({ activeView, onChangeView, isOpen, onClose, collapsed }) => {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 overflow-y-auto rounded-r-3xl border-r border-slate-800 bg-slate-950/95 p-4 text-slate-100 shadow-2xl transition-all duration-300 ${
+        className={`fixed inset-y-0 left-0 z-40 h-full overflow-y-auto rounded-r-3xl border-r border-slate-800 bg-slate-950/95 p-4 text-slate-100 shadow-2xl transition-all duration-300 ${
           isOpen ? 'w-72 translate-x-0' : '-translate-x-full w-72'
         } lg:static lg:translate-x-0 ${
           collapsed ? 'lg:w-20 lg:px-2' : 'lg:w-64 lg:px-4'
-        } lg:h-auto lg:rounded-3xl lg:border-0 lg:bg-slate-900/95`}
+        } lg:h-screen lg:rounded-3xl lg:border-0 lg:bg-slate-900/95`}
       >
         {/* Header */}
         <div className="flex items-center justify-between gap-3">
