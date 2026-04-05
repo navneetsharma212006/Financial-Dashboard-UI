@@ -1,17 +1,19 @@
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { getBalanceTrend } from '../../utils/analytics'
+import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } from 'recharts'
+import { getIncomeExpenseTrend } from '../../utils/analytics'
 import { formatCurrency } from '../../utils/formatters'
 import { useFinance } from '../../context/FinanceContext'
 import EmptyState from '../common/EmptyState'
 
 const BalanceTrendChart = ({ transactions }) => {
   const { theme } = useFinance()
-  const data = getBalanceTrend(transactions)
-  const lineColor = theme === 'dark' ? '#f8fafc' : '#0f172a'
+  const data = getIncomeExpenseTrend(transactions)
 
   if (!data.length) {
-    return <EmptyState title="No trend data yet" hint="Add transactions to see how your balance changes over time." />
+    return <EmptyState title="No trend data yet" hint="Add transactions to see income vs expenses over time." />
   }
+
+  const incomeColor = theme === 'dark' ? '#10b981' : '#059669'
+  const expenseColor = theme === 'dark' ? '#ef4444' : '#dc2626'
 
   return (
     <div className="h-64 sm:h-72 min-w-0">
@@ -30,7 +32,7 @@ const BalanceTrendChart = ({ transactions }) => {
             tick={{ fill: theme === 'dark' ? '#cbd5e1' : '#475569', fontSize: 12 }}
           />
           <Tooltip
-            formatter={(value) => formatCurrency(value)}
+            formatter={(value, name) => [formatCurrency(value), name === 'income' ? 'Income' : 'Expenses']}
             labelStyle={{ color: '#f8fafc', fontWeight: 600 }}
             itemStyle={{ color: '#f8fafc' }}
             contentStyle={{
@@ -40,7 +42,9 @@ const BalanceTrendChart = ({ transactions }) => {
               padding: '10px',
             }}
           />
-          <Line type="monotone" dataKey="balance" stroke={lineColor} strokeWidth={3} dot={{ r: 3 }} />
+          <Legend />
+          <Line type="monotone" dataKey="income" stroke={incomeColor} strokeWidth={3} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="expenses" stroke={expenseColor} strokeWidth={3} dot={{ r: 3 }} />
         </LineChart>
       </ResponsiveContainer>
     </div>

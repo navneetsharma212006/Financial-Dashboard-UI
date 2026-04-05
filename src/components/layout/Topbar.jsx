@@ -1,3 +1,5 @@
+import { FiMenu } from 'react-icons/fi'
+
 const Topbar = ({
   searchQuery,
   onSearch,
@@ -20,7 +22,7 @@ const Topbar = ({
             onClick={onMenuToggle}
             className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           >
-            <span className="text-xl">☰</span>
+            <FiMenu className="h-5 w-5" />
             <span className="sr-only">Toggle sidebar</span>
           </button>
 

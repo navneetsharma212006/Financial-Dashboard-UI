@@ -27,6 +27,7 @@ const App = () => {
   const [editingTx, setEditingTx] = useState(null)
   const [activeView, setActiveView] = useState('dashboard')
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const openAddModal = () => {
     setEditingTx(null)
@@ -35,6 +36,10 @@ const App = () => {
 
   const handleSidebarToggle = () => {
     setSidebarOpen((current) => !current)
+  }
+
+  const handleSidebarCollapse = () => {
+    setSidebarCollapsed((current) => !current)
   }
 
   const openEditModal = (item) => {
@@ -60,6 +65,8 @@ const App = () => {
           onChangeView={setActiveView}
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
+          collapsed={sidebarCollapsed}
+          onToggleCollapse={handleSidebarCollapse}
         />
         <div className="flex flex-1 flex-col rounded-2xl bg-white/95 p-3 shadow-card transition duration-300 dark:bg-slate-950 sm:p-4 overflow-hidden">
           <Topbar
@@ -79,7 +86,7 @@ const App = () => {
           <div className="flex-1 overflow-y-auto">
             {activeView === 'dashboard' && <DashboardView transactions={transactions} />}
             {activeView === 'transactions' && (
-              <TransactionsView rows={filteredTransactions} onEdit={openEditModal} canEdit={role === 'admin'} />
+              <TransactionsView rows={filteredTransactions} onEdit={openEditModal} canEdit={role === 'admin'} onAdd={openAddModal} />
             )}
             {activeView === 'insights' && <InsightsView transactions={transactions} onAdd={openAddModal} canAdd={role === 'admin'} />}
           </div>

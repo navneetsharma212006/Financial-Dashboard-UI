@@ -4,7 +4,7 @@ import TransactionsToolbar from '../transactions/TransactionsToolbar'
 
 const PAGE_SIZE = 6
 
-const TransactionsView = ({ rows, canEdit, onEdit }) => {
+const TransactionsView = ({ rows, canEdit, onEdit, onAdd }) => {
   const [page, setPage] = useState(1)
   const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE))
 
@@ -20,7 +20,7 @@ const TransactionsView = ({ rows, canEdit, onEdit }) => {
     <section className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
       <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Transactions</h2>
       <TransactionsToolbar />
-      <TransactionsTable rows={pagedRows} onEdit={onEdit} canEdit={canEdit} />
+      <TransactionsTable rows={pagedRows} onEdit={onEdit} canEdit={canEdit} onAdd={onAdd} />
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-500 dark:text-slate-300">
         <span>

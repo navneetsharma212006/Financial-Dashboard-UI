@@ -6,16 +6,14 @@ export const getSummary = (transactions) => {
   return { income, expenses, balance: income - expenses }
 }
 
-export const getBalanceTrend = (transactions) => {
+export const getIncomeExpenseTrend = (transactions) => {
   const months = [...new Set(transactions.map((item) => monthKey(item.date)))].sort()
-  let runningBalance = 0
 
   return months.map((month) => {
     const monthItems = transactions.filter((item) => monthKey(item.date) === month)
     const income = monthItems.filter((item) => item.type === 'income').reduce((sum, item) => sum + item.amount, 0)
     const expenses = monthItems.filter((item) => item.type === 'expense').reduce((sum, item) => sum + item.amount, 0)
-    runningBalance += income - expenses
-    return { month: monthLabel(month), balance: runningBalance }
+    return { month: monthLabel(month), income, expenses }
   })
 }
 

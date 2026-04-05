@@ -1,6 +1,28 @@
-import { getInsights } from '../../utils/analytics'
+import { motion } from 'framer-motion'
+import { FiTrendingUp, FiTrendingDown, FiRepeat, FiBarChart2 } from 'react-icons/fi'
+import { getInsights, getFrequentCategories } from '../../utils/analytics'
 import { formatCurrency, monthLabel } from '../../utils/formatters'
 import EmptyState from '../common/EmptyState'
+
+const InsightCard = ({ title, value, subtitle, icon: Icon, color }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
+    className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+  >
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{title}</p>
+        <p className={`mt-1 text-xl font-bold ${color}`}>{value}</p>
+        {subtitle && <p className="text-sm text-slate-600 dark:text-slate-300">{subtitle}</p>}
+      </div>
+      <div className={`rounded-lg p-2 ${color.replace('text-', 'bg-').replace('-600', '-100')} text-slate-900 dark:text-slate-100`}>
+        <Icon className="h-6 w-6" />
+      </div>
+    </div>
+  </motion.article>
+)
 
 const InsightsPanel = ({ transactions }) => {
   if (!transactions.length) {
@@ -8,32 +30,43 @@ const InsightsPanel = ({ transactions }) => {
   }
 
   const insights = getInsights(transactions)
-  const { topCategory, monthComparison, note } = insights
+  const { topCategory, monthComparison } = insights
+  const frequentCategories = getFrequentCategories(transactions)
   const direction = monthComparison.change >= 0 ? 'up' : 'down'
 
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-      <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-        <p className="text-sm text-slate-500 dark:text-slate-300">Highest Spending Category</p>
-        <p className="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100">{topCategory ? topCategory.name : 'N/A'}</p>
-        <p className="text-sm text-slate-600 dark:text-slate-300">{topCategory ? formatCurrency(topCategory.value) : '-'}</p>
-      </article>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <InsightCard
+        title="Highest Spending Category"
+        value={topCategory ? topCategory.name : 'N/A'}
+        subtitle={topCategory ? formatCurrency(topCategory.value) : '-'}
+        icon={FiBarChart2}
+        color="text-rose-600"
+      />
 
-      <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-        <p className="text-sm text-slate-500 dark:text-slate-300">Monthly Comparison</p>
-        <p className="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
-          {monthComparison.latest ? monthLabel(monthComparison.latest) : 'Current'}
-        </p>
-        <p className={`text-sm ${direction === 'up' ? 'text-emerald-600' : 'text-rose-600'}`}>
-          {direction === 'up' ? '+' : ''}
-          {formatCurrency(monthComparison.change)} vs previous month
-        </p>
-      </article>
+      <InsightCard
+        title="Monthly Comparison"
+        value={`${direction === 'up' ? '+' : ''}${formatCurrency(monthComparison.change)}`}
+        subtitle={`vs ${monthComparison.previous ? monthLabel(monthComparison.previous) : 'last month'}`}
+        icon={direction === 'up' ? FiTrendingUp : FiTrendingDown}
+        color={direction === 'up' ? 'text-emerald-600' : 'text-rose-600'}
+      />
 
-      <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-        <p className="text-sm text-slate-500 dark:text-slate-300">Observation</p>
-        <p className="mt-2 text-sm text-slate-700 dark:text-slate-200">{note}</p>
-      </article>
+      <InsightCard
+        title="Most Frequent Category"
+        value={frequentCategories[0]?.name || 'N/A'}
+        subtitle={`${frequentCategories[0]?.count || 0} transactions`}
+        icon={FiRepeat}
+        color="text-blue-600"
+      />
+
+      <InsightCard
+        title="Total Transactions"
+        value={transactions.length}
+        subtitle="All time"
+        icon={FiBarChart2}
+        color="text-slate-600"
+      />
     </div>
   )
 }

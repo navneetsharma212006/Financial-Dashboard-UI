@@ -1,13 +1,14 @@
+import { FiBarChart2, FiHome, FiList, FiPieChart, FiMenu, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { useFinance } from '../../context/FinanceContext'
 import RoleSwitcher from '../common/RoleSwitcher'
 
 const NAV_ITEMS = [
-  { key: 'dashboard', label: 'Dashboard', icon: '▦' },
-  { key: 'transactions', label: 'Transactions', icon: '☰' },
-  { key: 'insights', label: 'Insights', icon: '◔' },
+  { key: 'dashboard', label: 'Dashboard', icon: FiHome },
+  { key: 'transactions', label: 'Transactions', icon: FiList },
+  { key: 'insights', label: 'Insights', icon: FiPieChart },
 ]
 
-const Sidebar = ({ activeView, onChangeView, isOpen, onClose }) => {
+const Sidebar = ({ activeView, onChangeView, isOpen, onClose, collapsed, onToggleCollapse }) => {
   return (
     <>
       {/* Mobile overlay */}
@@ -20,24 +21,35 @@ const Sidebar = ({ activeView, onChangeView, isOpen, onClose }) => {
 
       {/* Sidebar - now scrolls with page */}
       <aside
-        className={`flex h-full w-72 flex-col rounded-r-3xl border-r border-slate-800 bg-slate-950/95 p-4 text-slate-100 shadow-2xl transition-all duration-300 ${
+        className={`flex h-full flex-col rounded-r-3xl border-r border-slate-800 bg-slate-950/95 p-4 text-slate-100 shadow-2xl transition-all duration-300 ${
           isOpen ? 'fixed inset-y-0 left-0 z-40 lg:relative lg:inset-auto lg:flex' : 'hidden lg:hidden'
-        } lg:w-64 lg:rounded-3xl lg:border-0 lg:bg-slate-900/95`}
+        } ${collapsed ? 'lg:w-16' : 'lg:w-64'} lg:rounded-3xl lg:border-0 lg:bg-slate-900/95`}
       >
         {/* Header */}
         <div className="flex flex-shrink-0 items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-lg font-semibold text-white">
-            <span className="text-amber-300">◍</span>
-            <span>Finance Dashboard</span>
+          <div className={`flex items-center gap-2 text-lg font-semibold text-white ${collapsed ? 'lg:justify-center' : ''}`}>
+            {!collapsed && <span>Finance Dashboard</span>}
+            <FiBarChart2 className="h-6 w-6" />
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-xl bg-slate-800 p-2 text-slate-200 transition hover:bg-slate-700 lg:hidden"
-          >
-            <span className="text-lg">×</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onToggleCollapse}
+              className="hidden rounded-xl bg-slate-800 p-2 text-slate-200 transition hover:bg-slate-700 lg:block"
+              title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            >
+              {collapsed ? <FiChevronRight className="h-5 w-5" /> : <FiChevronLeft className="h-5 w-5" />}
+            </button>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-xl bg-slate-800 p-2 text-slate-200 transition hover:bg-slate-700 lg:hidden"
+            >
+              <FiX className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Navigation */}
@@ -57,22 +69,25 @@ const Sidebar = ({ activeView, onChangeView, isOpen, onClose }) => {
                   activeView === item.key
                     ? 'bg-slate-800 text-white shadow-sm'
                     : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                }`}
+                } ${collapsed ? 'lg:justify-center lg:px-3' : ''}`}
+                title={collapsed ? item.label : undefined}
               >
-                <span className="text-base">{item.icon}</span>
-                <span>{item.label}</span>
+                <item.icon className="h-5 w-5" />
+                {!collapsed && <span>{item.label}</span>}
               </button>
             ))}
           </div>
         </nav>
 
         {/* Role Section */}
-        <div className="flex-shrink-0 mt-6 rounded-3xl bg-slate-900 p-4 ring-1 ring-slate-800">
-          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-slate-400">
-            Role
-          </p>
-          <RoleSwitcher />
-        </div>
+        {!collapsed && (
+          <div className="flex-shrink-0 mt-6 rounded-3xl bg-slate-900 p-4 ring-1 ring-slate-800">
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-slate-400">
+              Role
+            </p>
+            <RoleSwitcher />
+          </div>
+        )}
       </aside>
     </>
   )
