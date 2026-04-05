@@ -136,10 +136,9 @@ npm run dev
 ![Transactions](https://github.com/navneetsharma212006/Financial-Dashboard-UI/blob/3a14678cb8862a158a914954af5c8a91256fa4d3/screenshots/Transactions.png)
 
 **Insights**
-![Insights](screenshots/insights.png)
+![Insights](https://github.com/navneetsharma212006/Financial-Dashboard-UI/blob/326f768c128bbedff9b87f5325d1b90128853f5a/screenshots/Insights.png)
 
-**Empty State Example**
-![Empty State](screenshots/empty-state.png)
+
 
 ---
 
