@@ -9,6 +9,9 @@ The goal of this project is to demonstrate **modern frontend development practic
 ### Deployment
 Live Demo: https://financial-dashboard-ui-iota.vercel.app/
 
+### Video Demo
+Link : https://drive.google.com/file/d/1eJVHVa-fJyq1uU2Tv7GSNR6jH2CVYCqN/view?usp=sharing
+
 # Features
 
 ### Dashboard
