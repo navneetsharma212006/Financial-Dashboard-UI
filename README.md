@@ -168,7 +168,7 @@ This project demonstrates:
 
 # Author
 
-**Navneet Sharma**
+**Navneet Sharma -**
 Frontend Developer
 Passionate about building **modern web applications and dashboards**
 
