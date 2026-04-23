@@ -1,6 +1,6 @@
 # Financial Dashboard UI
 
-A modern **Financial Dashboard Web Application** built using **React, Tailwind CSS, and Context API**.
+A modern **Financial Dashboard Web Application** built using **React, Tailwind CSS, and Context API**....
 This project allows users to **track income, expenses, and financial insights** through a clean and responsive interface.
 
 The goal of this project is to demonstrate **modern frontend development practices** such as component architecture, state management, responsive UI design, and reusable UI components.
